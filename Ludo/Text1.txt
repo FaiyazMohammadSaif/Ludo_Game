@@ -1,0 +1,799 @@
+#include<conio.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<graphics.h>
+#include<math.h>
+#include<string.h>
+#include<dos.h>
+#include<time.h>
+	int moving=1,last=0,a=1;
+
+struct point
+{
+  int x1;
+  int y1;
+  int x2;
+  int y2;
+};
+point
+/////green portion////
+one={417,383,444,410},two={417,414,444,441},three={417,445,444,472},
+four={386,445,413,472},five={355,445,382,472},six={355,414,382,441},
+seven={355,383,382,410},eight={355,352,382,379},nine={355,321,382,348},
+ten={355,290,382,317},eleven={324,259,351,286},twelve={293,259,320,286},
+thirteen={260,259,289,286},
+//////yellow portion////
+fourteen={229,259,256,286},fifteen={198,259,225,286},sixteen={167,259,194,286},
+seventeen={167,228,194,255},eighteen={167,197,194,224},nineteen={198,197,225,224},
+twenty={229,197,256,224},twenty1={260,197,289,224},twenty2={293,197,320,224},
+twenty3={324,197,351,224},twenty4={355,166,382,193},twenty5={355,135,382,162},
+twenty6={355,104,382,131},
+//////////blue portion//////////////////
+twenty7={355,73,382,100},twenty8={355,42,382,69},twenty9={355,11,382,38},
+thirty={386,11,413,38},thirty1={417,11,444,38},thirty2={417,42,444,69},
+thirty3={417,73,444,100},thirty4={417,104,444,131},thirty5={417,135,444,162},
+thirty6={417,166,444,193},thirty7={448,197,475,224},thirty8={479,197,506,224},
+thirty9={510,197,537,224},
+//////////red portion///////////
+fourty={541,197,568,224},fourty1={572,197,599,224},fourty2={603,197,630,224},
+fourty3={603,228,630,255},fourty4={603,259,630,286},fourty5={572,259,599,286},
+fourty6={541,259,568,286},fourty7={510,259,537,286},fourty8={479,259,506,286},
+fourty9={448,259,475,286},fifty={417,290,444,317},fifty1={417,321,444,348},
+fifty2={417,352,444,379};
+
+void interface(void);
+void redhome(void);
+void yellowhome(void);
+void greenhome(void);
+void bluehome(void);
+void pieces(void);
+void dice1(void);
+void dice2(void);
+void dicenumber(int);
+void removedicenumber(void);
+
+void main (void){
+   int d=VGA,m=VGAHI;
+   initgraph(&d,&m,"c:\\tc\\bgi");
+   pieces();
+   char ch;
+   void *buff;
+   unsigned int size;
+   ////////////GETTING IMAGE////////////
+   size=imagesize(20,430,47,457);
+   buff=(void *)malloc(size);
+   getimage(20,430,47,457,buff);
+   /////////////////////////////////////
+   interface();
+   greenhome();
+   yellowhome();
+   bluehome();
+   redhome();
+   randomize();
+   while(1){
+     moving=random(6)+1;
+     ch=getch();
+     if (a==2){
+     removedicenumber();
+     }
+     if(ch=='\r'){
+     exit(0);
+     }
+     for (int d=0;d<3;d++){
+	dice1();
+	dice2();
+     }
+     dicenumber(moving);
+     a=2;
+     moving=moving+last;
+
+     switch(moving){
+	case 1 :  putimage(one.x1,one.y1,buff,COPY_PUT);break;
+	case 2 :  putimage(two.x1,two.y1,buff,COPY_PUT);break;
+	case 3 :  putimage(three.x1,three.y1,buff,COPY_PUT);break;
+	case 4 :  putimage(four.x1,four.y1,buff,COPY_PUT);break;
+	case 5 :  putimage(five.x1,five.y1,buff,COPY_PUT);break;
+	case 6 :  putimage(six.x1,six.y1,buff,COPY_PUT);break;
+	case 7 :  putimage(seven.x1,seven.y1,buff,COPY_PUT);break;
+	case 8 :  putimage(eight.x1,eight.y1,buff,COPY_PUT);break;
+	case 9 :  putimage(nine.x1,nine.y1,buff,COPY_PUT);break;
+	case 10 : putimage(ten.x1,ten.y1,buff,COPY_PUT);break;
+	case 11 : putimage(eleven.x1,eleven.y1,buff,COPY_PUT);break;
+	case 12 : putimage(twelve.x1,twelve.y1,buff,COPY_PUT);break;
+	case 13 : putimage(thirteen.x1,thirteen.y1,buff,COPY_PUT);break;
+	case 14 : putimage(fourteen.x1,fourteen.y1,buff,COPY_PUT);break;
+	case 15 : putimage(fifteen.x1,fifteen.y1,buff,COPY_PUT);break;
+	case 16 : putimage(sixteen.x1,sixteen.y1,buff,COPY_PUT);break;
+	case 17 : putimage(seventeen.x1,seventeen.y1,buff,COPY_PUT);break;
+	case 18 : putimage(eighteen.x1,eighteen.y1,buff,COPY_PUT);break;
+	case 19 : putimage(nineteen.x1,nineteen.y1,buff,COPY_PUT);break;
+	case 20 : putimage(twenty.x1,twenty.y1,buff,COPY_PUT);break;
+	case 21 : putimage(twenty1.x1,twenty1.y1,buff,COPY_PUT);break;
+	case 22 : putimage(twenty2.x1,twenty2.y1,buff,COPY_PUT);break;
+	case 23 : putimage(twenty3.x1,twenty3.y1,buff,COPY_PUT);break;
+	case 24 : putimage(twenty4.x1,twenty4.y1,buff,COPY_PUT);break;
+	case 25 : putimage(twenty5.x1,twenty5.y1,buff,COPY_PUT);break;
+	case 26 : putimage(twenty6.x1,twenty6.y1,buff,COPY_PUT);break;
+	case 27 : putimage(twenty7.x1,twenty7.y1,buff,COPY_PUT);break;
+	case 28 : putimage(twenty8.x1,twenty8.y1,buff,COPY_PUT);break;
+	case 29 : putimage(twenty9.x1,twenty9.y1,buff,COPY_PUT);break;
+	case 30 : putimage(thirty.x1,thirty.y1,buff,COPY_PUT);break;
+	case 31 : putimage(thirty1.x1,thirty1.y1,buff,COPY_PUT);break;
+	case 32 : putimage(thirty2.x1,thirty2.y1,buff,COPY_PUT);break;
+	case 33 : putimage(thirty3.x1,thirty3.y1,buff,COPY_PUT);break;
+	case 34 : putimage(thirty4.x1,thirty4.y1,buff,COPY_PUT);break;
+	case 35 : putimage(thirty5.x1,thirty5.y1,buff,COPY_PUT);break;
+	case 36 : putimage(thirty6.x1,thirty6.y1,buff,COPY_PUT);break;
+	case 37 : putimage(thirty7.x1,thirty7.y1,buff,COPY_PUT);break;
+	case 38 : putimage(thirty8.x1,thirty8.y1,buff,COPY_PUT);break;
+	case 39 : putimage(thirty9.x1,thirty9.y1,buff,COPY_PUT);break;
+	case 40 : putimage(fourty.x1,fourty.y1,buff,COPY_PUT);break;
+	case 41 : putimage(fourty1.x1,fourty1.y1,buff,COPY_PUT);break;
+	case 42 : putimage(fourty2.x1,fourty2.y1,buff,COPY_PUT);break;
+	case 43 : putimage(fourty3.x1,fourty3.y1,buff,COPY_PUT);break;
+	case 44 : putimage(fourty4.x1,fourty4.y1,buff,COPY_PUT);break;
+	case 45 : putimage(fourty5.x1,fourty5.y1,buff,COPY_PUT);break;
+	case 46 : putimage(fourty6.x1,fourty6.y1,buff,COPY_PUT);break;
+	case 47 : putimage(fourty7.x1,fourty7.y1,buff,COPY_PUT);break;
+	case 48 : putimage(fourty8.x1,fourty8.y1,buff,COPY_PUT);break;
+	case 49 : putimage(fourty9.x1,fourty9.y1,buff,COPY_PUT);break;
+	case 50 : putimage(fifty.x1,fifty.y1,buff,COPY_PUT);break;
+	case 51 : putimage(fifty1.x1,fifty1.y1,buff,COPY_PUT);break;
+	case 52 : putimage(fifty2.x1,fifty2.y1,buff,COPY_PUT);break;
+     }
+     last=moving;
+     if(moving>52){
+       exit(0);
+     }
+   }
+ }
+/////////////////////FUNCTIONS///////////////////
+void interface(void){
+  setcolor(WHITE);
+  rectangle(158,1,638,478);
+  ///////END/////////
+  setcolor(CYAN);
+  rectangle(355,286,444,197);
+  setcolor(LIGHTMAGENTA);
+  circle(399,241,15);
+  settextstyle(0,HORIZ_DIR,1);
+  setcolor(GREEN);
+  rectangle(40,295,110,320);
+  outtextxy(60,298,"ROLL");
+  outtextxy(60,310,"DICE");
+  settextstyle(4,HORIZ_DIR,6);
+  outtextxy(7,10,"LUDU");
+}
+void greenhome(void){
+  ///////for green pieces//////
+  ////////1////////
+  setcolor(GREEN);
+  circle(225,349,15);
+  setcolor(BROWN);
+  circle(225,349,10);
+  setfillstyle(9,GREEN);
+  floodfill(224,350,BROWN);
+  ////////2////////
+  setcolor(GREEN);
+  circle(294,349,15);
+  setcolor(BROWN);
+  circle(294,349,10);
+  setfillstyle(9,GREEN);
+  floodfill(293,350,BROWN);
+  ////////3////////
+  setcolor(GREEN);
+  circle(225,413,15);
+  setcolor(BROWN);
+  circle(225,413,10);
+  setfillstyle(9,GREEN);
+  floodfill(224,414,BROWN);
+  ////////4////////
+  setcolor(GREEN);
+  circle(294,414,15);
+  setcolor(BROWN);
+  circle(294,414,10);
+  setfillstyle(9,GREEN);
+  floodfill(293,413,BROWN);
+  ////HOME OF PIECES/////////
+  setfillstyle(5,BROWN);
+  setcolor(GREEN);
+  rectangle(196,442,321,320);
+  rectangle(166,290,351,472);
+  ////////////four rectangles inside one rectangle/////
+  rectangle(201,326,247,372);//1//
+  rectangle(270,326,316,372);//2//
+  rectangle(201,390,247,436);//3//
+  rectangle(270,390,316,436);//4//
+  /////////////////BOXES///////////////////
+  rectangle(417,383,444,410);
+  floodfill(420,385,GREEN);
+  rectangle(417,414,444,441);
+  rectangle(417,445,444,472);
+  rectangle(386,445,413,472);
+  rectangle(355,445,382,472);
+  rectangle(355,414,382,441);
+  floodfill(358,417,GREEN);
+  rectangle(355,383,382,410);
+  rectangle(355,352,382,379);
+  rectangle(355,321,382,348);
+  rectangle(355,290,382,317);
+  rectangle(324,259,351,286);
+  rectangle(293,259,320,286);
+  rectangle(260,259,289,286);
+  /////////End Of Green(5 BOXES)/////////////
+  rectangle(386,414,413,441);
+  line(386,441,413,414);
+  line(386,414,413,441);
+  line(400,414,400,441);
+  line(386,427,413,427);
+
+  rectangle(386,383,413,410);
+  line(386,410,413,383);
+  line(386,383,413,410);
+  line(400,409,400,383);
+  line(386,397,412,397);
+
+  rectangle(386,352,413,379);
+  line(386,379,413,352);
+  line(386,352,413,379);
+  line(400,379,400,353);
+  line(386,365,413,365);
+
+  rectangle(386,321,413,348);
+  line(386,348,413,321);
+  line(386,321,413,348);
+  line(400,348,400,321);
+  line(386,335,413,335);
+
+  rectangle(386,290,413,317);
+  line(386,317,413,291);
+  line(386,291,413,317);
+  line(400,317,400,291);
+  line(386,304,413,304);
+}
+void yellowhome(void){
+  ///////for YELLOW pieces//////
+  ////////1////////
+  setcolor(YELLOW);
+  circle(225,70,15);
+  setcolor(BROWN);
+  circle(225,70,10);
+  setfillstyle(9,YELLOW);
+  floodfill(224,69,BROWN);
+  ////////2////////
+  setcolor(YELLOW);
+  circle(294,70,15);
+  setcolor(BROWN);
+  circle(294,70,10);
+  setfillstyle(9,YELLOW);
+  floodfill(293,69,BROWN);
+  ////////3////////
+  setcolor(YELLOW);
+  circle(225,134,15);
+  setcolor(BROWN);
+  circle(225,134,10);
+  setfillstyle(9,YELLOW);
+  floodfill(224,132,BROWN);
+  ////////4////////
+  setcolor(YELLOW);
+  circle(294,134,15);
+  setcolor(BROWN);
+  circle(294,134,10);
+  setfillstyle(9,YELLOW);
+  floodfill(293,133,BROWN);
+  //////////HOME OF PIECES/////////
+  setfillstyle(5,BROWN);
+  setcolor(YELLOW);
+  rectangle(166,11,351,193);
+  rectangle(196,41,321,163);
+  ////////////four rectangles inside one rectangle/////
+  rectangle(201,47,247,93);//1//
+  rectangle(270,47,316,93);//2//
+  rectangle(201,111,247,157);//3//
+  rectangle(270,111,316,157);//4//
+  /////////////////BOXES///////////////////////
+  rectangle(229,259,256,286);
+  floodfill(232,283,YELLOW);
+  rectangle(198,259,225,286);
+  rectangle(167,259,194,286);
+  rectangle(167,228,194,255);
+  rectangle(167,197,194,224);
+  rectangle(198,197,225,224);
+  floodfill(201,221,YELLOW);
+  rectangle(229,197,256,224);
+  rectangle(260,197,289,224);
+  rectangle(293,197,320,224);
+  rectangle(324,197,351,224);
+  rectangle(355,166,382,193);
+  rectangle(355,135,382,162);
+  rectangle(355,104,382,131);
+  /////////End Of YELLOW(5 BOXES)/////////////
+  rectangle(198,228,225,255);
+  line(325,229,351,255);
+  line(325,255,351,229);
+  line(325,241,351,241);
+  line(338,255,338,229);
+
+  rectangle(229,228,256,255);
+  line(294,229,320,255);
+  line(294,255,320,229);
+  line(294,241,320,241);
+  line(308,254,308,229);
+
+  rectangle(260,228,289,255);
+  line(262,229,288,255);
+  line(262,255,288,229);
+  line(260,241,288,241);
+  line(275,255,275,229);
+
+  rectangle(293,228,320,255);
+  line(230,229,256,255);
+  line(230,254,256,228);
+  line(230,241,256,241);
+  line(243,255,243,229);
+
+  rectangle(324,228,351,255);
+  line(199,228,225,255);
+  line(199,255,225,228);
+  line(199,241,225,241);
+  line(213,255,213,229);
+}
+void bluehome(void){
+  ///////for BLUE pieces//////
+  ////////1////////
+  setcolor(LIGHTBLUE);
+  circle(506,70,15);
+  setcolor(BROWN);
+  circle(506,70,10);
+  setfillstyle(9,LIGHTBLUE);
+  floodfill(505,69,BROWN);
+  ////////2////////
+  setcolor(LIGHTBLUE);
+  circle(572,70,15);
+  setcolor(BROWN);
+  circle(572,70,10);
+  setfillstyle(9,LIGHTBLUE);
+  floodfill(574,69,BROWN);
+  ////////3////////
+  setcolor(LIGHTBLUE);
+  circle(506,134,15);
+  setcolor(BROWN);
+  circle(506,134,10);
+  setfillstyle(9,LIGHTBLUE);
+  floodfill(505,132,BROWN);
+  ////////4////////
+  setcolor(LIGHTBLUE);
+  circle(572,134,15);
+  setcolor(BROWN);
+  circle(572,134,10);
+  setfillstyle(9,LIGHTBLUE);
+  floodfill(574,133,BROWN);
+  //////HOME OF PIECES/////////
+  setfillstyle(5,BROWN);
+  setcolor(LIGHTBLUE);
+  rectangle(448,11,630,193);
+  rectangle(478,41,600,163);
+  ////////////four rectangles inside one rectangle////////
+  rectangle(483,47,529,93);//1//
+  rectangle(549,47,595,93);//2//
+  rectangle(483,111,529,157);//3//
+  rectangle(549,111,595,157);//4//
+  /////////////////BOXES//////////////////
+  rectangle(355,73,382,100);
+  floodfill(358,76,LIGHTBLUE);
+  rectangle(355,42,382,69);
+  rectangle(355,11,382,38);
+  rectangle(386,11,413,38);
+  rectangle(417,11,444,38);
+  rectangle(417,42,444,69);
+  floodfill(420,45,LIGHTBLUE);
+  rectangle(417,73,444,100);
+  rectangle(417,104,444,131);
+  rectangle(417,135,444,162);
+  rectangle(417,166,444,193);
+  rectangle(448,197,475,224);
+  rectangle(479,197,506,224);
+  rectangle(510,197,537,224);
+  /////////End Of BLUE(5 BOXES)/////////////
+  rectangle(386,42,413,69);
+  line(386,192,413,166);
+  line(386,166,413,192);
+  line(400,192,400,166);
+  line(386,179,413,179);
+
+  rectangle(386,73,413,100);
+  line(386,162,413,135);
+  line(386,135,413,162);
+  line(400,162,400,135);
+  line(386,149,413,149);
+
+  rectangle(386,104,413,131);
+  line(386,131,413,105);
+  line(386,105,413,131);
+  line(400,131,400,105);
+  line(386,118,413,118);
+
+  rectangle(386,135,413,162);
+  line(386,99,411,74);
+  line(386,74,411,99);
+  line(399,99,399,74);
+  line(386,87,413,87);
+
+  rectangle(386,166,413,193);
+  line(386,69,413,43);
+  line(386,43,413,69);
+  line(400,69,400,43);
+  line(386,56,413,56);
+}
+void redhome(void){
+  ///////for RED pieces//////
+  ////////1////////
+  setcolor(RED);
+  circle(506,349,15);
+  setcolor(BROWN);
+  circle(506,349,10);
+  setfillstyle(9,RED);
+  floodfill(505,348,BROWN);
+  ////////2////////
+  setcolor(RED);
+  circle(572,349,15);
+  setcolor(BROWN);
+  circle(572,349,10);
+  setfillstyle(9,RED);
+  floodfill(574,348,BROWN);
+  ////////3////////
+  setcolor(RED);
+  circle(506,414,15);
+  setcolor(BROWN);
+  circle(506,414,10);
+  setfillstyle(9,RED);
+  floodfill(505,413,BROWN);
+  ////////4////////
+  setcolor(RED);
+  circle(572,414,15);
+  setcolor(BROWN);
+  circle(572,414,10);
+  setfillstyle(9,RED);
+  floodfill(574,413,BROWN);
+  ////////////HOME OF PIECES////////////
+  setfillstyle(5,BROWN);
+  setcolor(RED);
+  rectangle(448,290,630,472);
+  rectangle(478,320,600,442);
+  ////////////four rectangles inside one rectangle/////
+  rectangle(483,326,529,372);//1//
+  rectangle(549,326,595,372);//2//
+  rectangle(483,390,529,436);//3//
+  rectangle(549,390,595,436);//4//
+  /////////////BOXES///////////////
+  rectangle(541,197,568,224);
+  floodfill(544,221,RED);
+  rectangle(572,197,599,224);
+  rectangle(603,197,630,224);
+  rectangle(603,228,630,255);
+  rectangle(603,259,630,286);
+  rectangle(572,259,599,286);
+  floodfill(578,283,RED);
+  rectangle(541,259,568,286);
+  rectangle(510,259,537,286);
+  rectangle(479,259,506,286);
+  rectangle(448,259,475,286);
+  rectangle(417,290,444,317);
+  rectangle(417,321,444,348);
+  rectangle(417,352,444,379);
+  /////////End Of RED(5 BOXES)/////////////
+  rectangle(599,228,572,255);
+  line(574,229,599,255);
+  line(573,254,599,228);
+  line(573,241,599,241);
+  line(586,255,586,228);
+
+  rectangle(568,228,541,255);
+  line(542,229,568,255);
+  line(542,254,568,228);
+  line(542,241,568,241);
+  line(554,255,554,228);
+
+  rectangle(537,228,510,255);
+  line(511,229,537,255);
+  line(511,254,537,228);
+  line(511,241,537,241);
+  line(523,255,523,228);
+
+  rectangle(506,228,479,255);
+  line(479,229,505,255);
+  line(479,254,505,228);
+  line(479,241,505,241);
+  line(492,255,492,228);
+
+  rectangle(475,228,448,255);
+  line(449,229,475,255);
+  line(448,255,473,229);
+  line(448,241,474,241);
+  line(461,255,461,228);
+}
+void pieces(void){
+  ///////for green piece//////
+  setcolor(GREEN);
+  rectangle(20,430,47,457);
+  setcolor(GREEN);
+  circle(34,443,10);
+  setcolor(BROWN);
+  circle(34,443,5);
+  setfillstyle(9,GREEN);
+  floodfill(33,442,BROWN);
+  /////////for yellow piece//////
+  setcolor(YELLOW);
+  rectangle(49,430,76,457);
+  setcolor(YELLOW);
+  circle(63,443,10);
+  setcolor(BROWN);
+  circle(63,443,5);
+  setfillstyle(9,YELLOW);
+  floodfill(61,442,BROWN);
+  ///////for blue piece//////
+  setcolor(LIGHTBLUE);
+  rectangle(20,401,47,428);
+  setcolor(LIGHTBLUE);
+  circle(34,414,10);
+  setcolor(BROWN);
+  circle(34,414,5);
+  setfillstyle(9,LIGHTBLUE);
+  floodfill(33,413,BROWN);
+  /////////for red piece//////
+  setcolor(RED);
+  rectangle(49,401,76,428);
+  setcolor(RED);
+  circle(63,414,10);
+  setcolor(BROWN);
+  circle(63,414,5);
+  setfillstyle(9,RED);
+  floodfill(61,413,BROWN);
+}
+
+void dice2(){
+  int ax[8],ay[8],px[8],py[8],bx[8],by[8];
+  ax[0]=280-230;
+  ay[0]=200;
+  ax[1]=320-230;
+  ay[1]=200;
+  ax[3]=280-230;
+  ay[3]=240;
+  ax[2]=320-230;
+  ay[2]=240;
+  ax[4]=280+10-230;
+  ay[4]=240-10;
+  ax[5]=320+10-230;
+  ay[5]=240-10;
+  ax[6]=280+10-230;
+  ay[6]=200-10;
+  ax[7]=320+10-230;
+  ay[7]=200-10;
+  bx[0]=320-230;
+  by[0]=200;
+  bx[1]=320-230;
+  by[1]=240;
+  bx[3]=280-230;
+  by[3]=200;
+  bx[2]=280-230;
+  by[2]=240;
+  bx[6]=320+10-230;
+  by[6]=200-10;
+  bx[7]=320+10-230;
+  by[7]=240-10;
+  bx[4]=280+10-230;
+  by[4]=200-10;
+  bx[5]=280+10-230;
+  by[5]=240-10;
+  int cond;
+  for(float t=0.0;t<1.0;t+=0.02)
+  {
+  for(int i=0;i<8;i++){
+   px[i]=(1.0-t)*ax[i]+t*bx[i];
+   py[i]=(1.0-t)*ay[i]+t*by[i];
+  }
+  setcolor(15);
+  line(px[0],py[0],px[1],py[1]);
+  line(px[1],py[1],px[2],py[2]);
+  line(px[2],py[2],px[3],py[3]);
+  line(px[3],py[3],px[0],py[0]);
+
+  if(px[5]>px[1]-10){
+   line(px[2],py[2],px[5],py[5]);
+   line(px[7],py[7],px[5],py[5]);
+   setfillstyle(1,BROWN);
+   floodfill(px[5]-5,py[5]-10,15);
+  }
+  line(px[6],py[6],px[7],py[7]);
+  line(px[7],py[7],px[1],py[1]);
+  line(px[6],py[6],px[0],py[0]);
+  setfillstyle(1,BROWN);
+  floodfill(px[0]+3,py[0]+3,15);
+
+  if(px[0]-10>px[4]){
+   line(px[4],py[4],px[6],py[6]);
+   line(px[4],py[4],px[3],py[3]);
+   line(px[7],py[7],px[1],py[1]);
+  }
+  setfillstyle(1,0);
+  floodfill(13,153,15);
+  setcolor(BROWN);
+  line(px[0],py[0],px[1],py[1]);
+  line(px[1],py[1],px[2],py[2]);
+  line(px[2],py[2],px[3],py[3]);
+  line(px[3],py[3],px[0],py[0]);
+  line(px[4],py[4],px[5],py[5]);
+  line(px[4],py[4],px[3],py[3]);
+  line(px[5],py[5],px[2],py[2]);
+  line(px[6],py[6],px[7],py[7]);
+  line(px[7],py[7],px[1],py[1]);
+  line(px[6],py[6],px[0],py[0]);
+  line(px[7],py[7],px[5],py[5]);
+  line(px[4],py[4],px[6],py[6]);
+ }
+ setcolor(15);
+ line(ax[0],ay[0],ax[1],ay[1]);
+ line(ax[1],ay[1],ax[2],ay[2]);
+ line(ax[2],ay[2],ax[3],ay[3]);
+ line(ax[3],ay[3],ax[0],ay[0]);
+ line(ax[5],ay[5],ax[2],ay[2]);
+ line(ax[6],ay[6],ax[7],ay[7]);
+ line(ax[7],ay[7],ax[1],ay[1]);
+ line(ax[6],ay[6],ax[0],ay[0]);
+ line(ax[7],ay[7],ax[5],ay[5]);
+}
+void dice1(){
+ int ax[8],ay[8],px[8],py[8],bx[8],by[8];
+ ax[0]=280-230;
+ ay[0]=200;
+ ax[1]=320-230;
+ ay[1]=200;
+ ax[3]=280-230;
+ ay[3]=240;
+ ax[2]=320-230;
+ ay[2]=240;
+ ax[4]=280+10-230;
+ ay[4]=240-10;
+ ax[5]=320+10-230;
+ ay[5]=240-10;
+ ax[6]=280+10-230;
+ ay[6]=200-10;
+ ax[7]=320+10-230;
+ ay[7]=200-10;
+ bx[0]=280+10-230;
+ by[0]=200-10;
+ bx[1]=320+10-230;
+ by[1]=200-10;
+ bx[3]=280-230;
+ by[3]=200;
+ bx[2]=320-230;
+ by[2]=200;
+ bx[4]=280-230;
+ by[4]=240;
+ bx[5]=320-230;
+ by[5]=240;
+ bx[6]=280+10-230;
+ by[6]=240-10;
+ bx[7]=320+10-230;
+ by[7]=240-10;
+ for(float t=0.0;t<1.0;t+=0.09){
+ for(int i=0;i<8;i++){
+  px[i]=(1.0-t)*ax[i]+t*bx[i];
+  py[i]=(1.0-t)*ay[i]+t*by[i];
+ }
+ setcolor(15);
+ rectangle(10,150,140,280);
+ setcolor(15);
+ line(px[0],py[0],px[1],py[1]);
+ line(px[1],py[1],px[2],py[2]);
+ line(px[2],py[2],px[3],py[3]);
+ line(px[3],py[3],px[0],py[0]);
+ line(px[2],py[2],px[5],py[5]);
+ line(px[7],py[7],px[5],py[5]);
+ setfillstyle(1,BROWN);
+ floodfill(px[0]+10,py[0]+1,15);
+
+ if(py[6]<py[0]){
+  line(px[6],py[6],px[7],py[7]);
+  line(px[7],py[7],px[1],py[1]);
+  line(px[6],py[6],px[0],py[0]);
+  floodfill(px[2]+1,py[2]-3,15);
+  floodfill(px[6]+1,py[6]+1,15);
+  }
+ if(py[5]>py[3]){
+  line(px[4],py[4],px[5],py[5]);
+  line(px[4],py[4],px[3],py[3]);
+  line(px[5],py[5],px[2],py[2]);
+  line(px[7],py[7],px[1],py[1]);
+ }
+  setcolor(BROWN);
+  setfillstyle(1,0);
+  floodfill(13,153,15);
+  delay(15);
+  line(px[0],py[0],px[1],py[1]);
+  line(px[1],py[1],px[2],py[2]);
+  line(px[2],py[2],px[3],py[3]);
+  line(px[3],py[3],px[0],py[0]);
+  line(px[4],py[4],px[5],py[5]);
+  line(px[4],py[4],px[3],py[3]);
+  line(px[5],py[5],px[2],py[2]);
+  line(px[6],py[6],px[7],py[7]);
+  line(px[7],py[7],px[1],py[1]);
+  line(px[6],py[6],px[0],py[0]);
+  line(px[7],py[7],px[5],py[5]);
+ }
+}
+void dicenumber(int a){
+ setcolor(DARKGRAY);
+ setfillstyle(1,BLACK);
+
+ switch(a){
+	case 1:  circle(70,220,5);/////////center////////
+		 floodfill(71,221,DARKGRAY);
+		 break;
+	case 2:	 circle(60,210,5);//////left upper
+		 floodfill(61,211,DARKGRAY);
+		 circle(80,230,5);///////right down//////
+		 floodfill(81,231,DARKGRAY);
+		 break;
+	case 3:  circle(70,220,5);/////////center////////
+		 floodfill(71,221,DARKGRAY);
+		 circle(60,210,5);//////left upper
+		 floodfill(61,211,DARKGRAY);
+		 circle(80,230,5);///////right down//////
+		 floodfill(81,231,DARKGRAY);
+		 break;
+	case 4:  circle(60,210,5);//////left upper
+		 floodfill(61,211,DARKGRAY);
+		 circle(80,230,5);///////right down//////
+		 floodfill(81,231,DARKGRAY);
+		 circle(80,210,5);//////right upper
+		 floodfill(81,211,DARKGRAY);
+		 circle(60,230,5);//////left down///////
+		 floodfill(61,231,DARKGRAY);
+		 break;
+	case 5:  circle(60,210,5);//////left upper
+		 floodfill(61,211,DARKGRAY);
+		 circle(80,230,5);///////right down//////
+		 floodfill(81,231,DARKGRAY);
+		 circle(80,210,5);//////right upper
+		 floodfill(81,211,DARKGRAY);
+		 circle(60,230,5);//////left down///////
+		 floodfill(61,231,DARKGRAY);
+		 circle(70,220,5);/////////center////////
+		 floodfill(71,221,DARKGRAY);
+		 break;
+	case 6:  circle(60,210,5);//////left upper
+		 floodfill(61,211,DARKGRAY);
+		 circle(80,230,5);///////right down//////
+		 floodfill(81,231,DARKGRAY);
+		 circle(80,210,5);//////right upper
+		 floodfill(81,211,DARKGRAY);
+		 circle(60,230,5);//////left down///////
+		 floodfill(61,231,DARKGRAY);
+		 circle(70,210,5);/////for six////////upper center
+		 floodfill(71,211,DARKGRAY);
+		 circle(70,230,5);//////for six//lower center
+		 floodfill(71,231,DARKGRAY);
+		 break;
+	}
+}
+
+void removedicenumber(void){
+
+ setfillstyle(1,BROWN);
+ circle(60,210,5);//////left upper
+ floodfill(61,211,WHITE);
+ circle(80,230,5);///////right down//////
+ floodfill(81,231,WHITE);
+ circle(80,210,5);//////right upper
+ floodfill(81,211,WHITE);
+ circle(60,230,5);//////left down///////
+ floodfill(61,231,WHITE);
+ circle(70,220,5);/////////center////////
+ floodfill(71,221,WHITE);
+ circle(70,210,5);/////for six////////upper center
+ floodfill(71,211,WHITE);
+ circle(70,230,5);//////for six//lower center
+ floodfill(71,231,WHITE);
+}
